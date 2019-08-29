@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Container Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/root/build/src/hello_world",
+            "cwd": "/root/build/src/",
+            // "stopAtEntry": true,
+            "externalConsole": true,
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+            // "preLaunchTask": "Docker: Run Debugging Container",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeCwd": "${workspaceRoot}",
+                "pipeArgs": [
+                    "exec", "-i", "docker-cpp-sample", "sh", "-c"
+                ],
+                "quoteArgs": false,
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/root/src/":"${workspaceFolder}/src"
+            },
+        }
+    ]
+}
